@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 
 
 class assignments(db.Model):
-    _id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100))
     deadline = db.Column(db.Date)
     module_code = db.Column(db.String(100))
@@ -61,11 +61,20 @@ def create():
 
 @app.route("/viewCompletedAssignments")
 def viewComplete():
-    return render_template("viewCompleted.html")
+    return render_template("viewCompleted.html", info = assignments.query.filter_by(status = True).all())
 
-@app.route("/viewIncompleteAssignments")
+@app.route("/viewIncompleteAssignments", methods=["POST", "GET"])
 def viewIncomplete():
-    return render_template("viewIncomplete.html")
+    if request.method == "POST":
+        ass = request.form["assignment_id"]
+        button_name =  request.form["mark_complete"]
+
+        assignment = assignments.query.filter_by(id=ass).first()
+        assignment.status = True
+
+        db.session.add(assignment)
+        db.session.commit()
+    return render_template("viewIncomplete.html", info = assignments.query.filter_by(status = False).all())
 
 if __name__ == "__main__":
     with app.app_context():

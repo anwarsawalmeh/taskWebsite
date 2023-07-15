@@ -1,7 +1,33 @@
 {% extends "base.html" %}
 {% block title %} "Create Assignment" {% endblock %}
 {% block content %}
-<p>
-    This is the page to view Incomplete
-</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Assignment</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Module Code</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Completed?</th>
+        <th scope="col">Change</th>
+      </tr>
+    </thead>
+    {%for x in info%}
+        <tr>
+            <td>{{x.id}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.deadline}}</td>
+            <td>{{x.module_code}}</td>
+            <td>{{x.comments}}</td>
+            <td>{{x.status}}</td>
+            <td>
+                <form action="/viewIncompleteAssignments" method="post">
+                    <input type="hidden" name="assignment_id" value="{{x.id}}">
+                    <button type="submit" name="mark_complete">Mark Complete</button> 
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
