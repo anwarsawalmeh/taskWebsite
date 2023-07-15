@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block title %}Assignment Tracker{% endblock %}
+{% block content %}
+
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+.hero {
+  background-color: #0040C1;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero__title {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  z-index: 1;
+}
+
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #003298;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  -webkit-animation: cube 12s ease-in forwards infinite;
+          animation: cube 12s ease-in forwards infinite;
+}
+.cube:nth-child(2n) {
+  border-color: #0051f4;
+}
+.cube:nth-child(2) {
+  -webkit-animation-delay: 1ms;
+          animation-delay: 1ms;
+  left: 25vw;
+  top: 40vh;
+}
+.cube:nth-child(3) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube:nth-child(4) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube:nth-child(5) {
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube:nth-child(6) {
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+  left: 50vw;
+  top: 10vh;
+}
+
+@-webkit-keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+</style>
+
+
+<div class="hero"> 
+    <div class="content-container">
+        <div class="description">
+            <h1>Welcome to Assignment Tracker</h1>
+            <p>An assignment tracker designed to help students keep track of all their assignments.</p>
+            <p>Never miss a deadline again! With Assignment Tracker, you can easily organize and manage your assignments, stay on top of due dates, and track your progress.</p>
+            <p>Start managing your assignments today and experience a stress-free academic journey.</p>
+            <p><a href="/signup">Sign up</a> now to get started!</p>
+        </div>
+    </div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
+<!---->
+<style>
+    /* Center the page content */
+    .content-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Animation for the description */
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Styles for the description */
+    .description {
+        animation: fade-in 0.5s ease-out;
+        text-align: center;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .description h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .description p {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    .description a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .description a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+{% endblock %}

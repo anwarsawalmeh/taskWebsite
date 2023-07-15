@@ -38,7 +38,7 @@ Created all routes and methods for the different windows:
 
 @app.route("/")
 def main():
-    return render_template("base.html")
+    return render_template("home.html")
 
 @app.route("/viewAll")
 def viewAll():
@@ -56,6 +56,7 @@ def create():
        
        db.session.add(assignment)
        db.session.commit() 
+       return render_template("viewIncomplete.html")
 
     return render_template("createAssignment.html")
 

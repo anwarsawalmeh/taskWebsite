@@ -1,11 +1,62 @@
 {% extends "base.html" %}
 {% block title %} "Create Assignment" {% endblock %}
 {% block content %}
-<form method="post">
-    <li><input type="text" name="name" placeholder="Assignment Name"/></li>
-    <li><input type="date" name="deadline" placeholder="Choose Deadline"/></li>
-    <li><input type="text" name="moduleC" placeholder="Enter the Module Code"></li>
-    <li><input type="text" name="comments" placeholder="Enter any Comments"></li>
-    <li><input type = "submit" name="submit"></li>
-</form>
+<style>
+    /* Center the form */
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Form animation */
+    @keyframes slide-in {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Form styles */
+    .assignment-form {
+        animation: slide-in 0.5s ease-out;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+    }
+
+    .assignment-form input[type="text"],
+    .assignment-form input[type="date"],
+    .assignment-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .assignment-form input[type="submit"] {
+        background-color: #0040C1;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<div class="form-container">
+    <form class="assignment-form" method="post">
+        <input type="text" name="name" placeholder="Assignment Name" required>
+        <input type="date" name="deadline" required>
+        <input type="text" name="moduleC" placeholder="Enter the Module Code" required>
+        <input type="text" name="comments" placeholder="Enter any Comments">
+        <input type="submit" name="submit" value="Create Assignment">
+    </form>
+</div>
+
 {% endblock %}
