@@ -76,6 +76,29 @@ def viewIncomplete():
         db.session.commit()
     return render_template("viewIncomplete.html", info = assignments.query.filter_by(status = False).all())
 
+@app.route("/calanderView")
+def viewCalander():
+    events = []
+    data = assignments.query.all()
+    for d in data:
+        color = ''
+        eventTitle = d.name
+        eventDate = d.deadline
+
+        if d.status is True:
+            color = '#008000'
+        else:
+            color = '#FF0000'
+        
+        events.append(
+            {
+                'name': eventTitle,
+                'date':eventDate,
+                'color':color,
+            }
+        )
+    return render_template("calander.html", events = events)
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
